@@ -1,0 +1,22 @@
+# Build artifacts
+/build/
+/bin/
+*.class
+
+# Eclipse specific files
+/.settings/
+.metadata/
+.recommenders/
+
+# Logs and databases
+*.log
+*.sqlite
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+*.iml
+.vscode/
