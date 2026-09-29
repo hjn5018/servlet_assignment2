@@ -78,12 +78,9 @@
                                                                             현재 계정 정보를 확인하고 수정할 수 있습니다.</p>
                                                                     </div>
                                                                     <div>
-                                                                        <span class="badge <%= user.isAdmin() ? "
-                                                                            badge-admin" : "badge-user" %>"
-                                                                            style="font-size: 0.85rem; padding: 0.35rem
-                                                                            0.8rem;">
-                                                                            <%= user.isAdmin() ? "👑 관리자 계정"
-                                                                                : "👤 일반 사용자" %>
+                                                                        <span class="badge <%= user.isAdmin() ? "badge-admin" : "badge-user" %>"
+                                                                            style="font-size: 0.85rem; padding: 0.35rem 0.8rem;">
+                                                                            <%= user.isAdmin() ? "👑 관리자 계정" : "👤 일반 사용자" %>
                                                                         </span>
                                                                     </div>
                                                                 </div>
