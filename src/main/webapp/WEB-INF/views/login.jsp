@@ -36,6 +36,10 @@
                 <div class="alert alert-success">
                     ✅ 회원 탈퇴가 성공적으로 처리되었습니다. 이용해 주셔서 감사합니다.
                 </div>
+            <% } else if ("registered".equals(loginMsg)) { %>
+                <div class="alert alert-success">
+                    ✅ 회원가입이 완료되었습니다! 로그인해주세요.
+                </div>
             <% } %>
 
             <form action="<%= request.getContextPath() %>/login" method="post">
@@ -60,6 +64,13 @@
                 <strong>💡 테스트 계정 안내</strong><br>
                 - 일반 사용자: ID <code>user1</code> / PW <code>1234</code><br>
                 - 관리자 계정: ID <code>admin</code> / PW <code>1234</code>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="<%= request.getContextPath() %>/register"
+                   style="font-size: 0.88rem; color: var(--primary); text-decoration: none; font-weight: 600;">
+                    처음 이용하세요? 회원가입 &rarr;
+                </a>
             </div>
         </div>
     </main>

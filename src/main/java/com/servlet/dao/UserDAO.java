@@ -138,6 +138,29 @@ public class UserDAO {
         }
     }
 
+    public boolean isIdExist(String id) {
+        String sql = "SELECT COUNT(*) FROM users WHERE id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(conn, pstmt, rs);
+        }
+        return false;
+    }
+
     public boolean insertUser(User user) {
         String sql = "INSERT INTO users (id, password, name, role) VALUES (?, ?, ?, ?)";
         Connection conn = null;

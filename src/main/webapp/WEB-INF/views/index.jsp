@@ -28,6 +28,7 @@
                 <a href="<%= request.getContextPath() %>/mypage" class="btn btn-outline">마이페이지</a>
                 <a href="<%= request.getContextPath() %>/logout" class="btn btn-danger">로그아웃</a>
             <% } else { %>
+                <a href="<%= request.getContextPath() %>/register" class="btn btn-outline">회원가입</a>
                 <a href="<%= request.getContextPath() %>/login" class="btn btn-primary">로그인</a>
             <% } %>
         </div>
