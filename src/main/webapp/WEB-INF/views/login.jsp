@@ -3,6 +3,7 @@
     String errorMessage = (String) request.getAttribute("errorMessage");
     String inputUserId = (String) request.getAttribute("inputUserId");
     if (inputUserId == null) inputUserId = "";
+    String loginMsg = request.getParameter("msg");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -30,6 +31,10 @@
             <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
                 <div class="alert alert-danger">
                     ⚠️ <%= errorMessage %>
+                </div>
+            <% } else if ("deleted".equals(loginMsg)) { %>
+                <div class="alert alert-success">
+                    ✅ 회원 탈퇴가 성공적으로 처리되었습니다. 이용해 주셔서 감사합니다.
                 </div>
             <% } %>
 

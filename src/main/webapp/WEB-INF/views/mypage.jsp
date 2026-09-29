@@ -49,6 +49,22 @@
             <div class="alert alert-danger">
                 ⚠️ 이름을 비워둘 수 없습니다. 이름을 입력해주세요.
             </div>
+        <% } else if ("delete_empty_pw".equals(msg)) { %>
+            <div class="alert alert-danger">
+                ⚠️ 비밀번호를 입력해야 탈퇴를 진행할 수 있습니다.
+            </div>
+        <% } else if ("delete_wrong_pw".equals(msg)) { %>
+            <div class="alert alert-danger">
+                ❌ 비밀번호가 일치하지 않습니다. 다시 확인해주세요.
+            </div>
+        <% } else if ("delete_admin_forbidden".equals(msg)) { %>
+            <div class="alert alert-danger">
+                🚫 관리자 계정은 탈퇴할 수 없습니다.
+            </div>
+        <% } else if ("delete_fail".equals(msg)) { %>
+            <div class="alert alert-danger">
+                ❌ 회원 탈퇴 처리 중 오류가 발생했습니다. 다시 시도해주세요.
+            </div>
         <% } %>
 
         <!-- 회원 정보 및 수정 카드 -->
@@ -95,6 +111,49 @@
                     <a href="<%= request.getContextPath() %>/main" class="btn btn-outline">취소</a>
                 </div>
             </form>
+        </div>
+
+        <!-- 회원탈퇴 섹션 (관리자는 탈퇴 불가) -->
+        <% if (!user.isAdmin()) { %>
+        <div class="card" id="delete-account-section" style="border-top: 3px solid var(--danger);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 class="card-title" style="color: #991b1b; margin-bottom: 0.3rem;">⚠️ 회원 탈퇴</h2>
+                    <p class="card-desc" style="margin-bottom: 0;">탈퇴 시 계정 정보가 영구적으로 삭제되며 복구할 수 없습니다.</p>
+                </div>
+                <button type="button" id="openDeleteModalBtn" class="btn btn-danger"
+                        onclick="document.getElementById('deleteModal').classList.add('modal-open')">
+                    🗑️ 회원 탈퇴
+                </button>
+            </div>
+        </div>
+        <% } %>
+
+        <!-- 회원탈퇴 확인 모달 -->
+        <div id="deleteModal" class="modal-overlay" onclick="if(event.target===this) this.classList.remove('modal-open')">
+            <div class="modal-box">
+                <div class="modal-header">
+                    <span class="modal-icon">🗑️</span>
+                    <h3 class="modal-title">정말 탈퇴하시겠습니까?</h3>
+                    <p class="modal-desc">아래에 현재 비밀번호를 입력하시면 계정이 영구 삭제됩니다.<br>이 작업은 되돌릴 수 없습니다.</p>
+                </div>
+                <form action="<%= request.getContextPath() %>/deleteUser" method="post" id="deleteForm">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-label" for="confirmPassword">현재 비밀번호 확인</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                               class="form-control" placeholder="비밀번호를 입력하세요" required autocomplete="off">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-outline"
+                                onclick="document.getElementById('deleteModal').classList.remove('modal-open'); document.getElementById('confirmPassword').value=''">
+                            취소
+                        </button>
+                        <button type="submit" class="btn btn-danger-solid">
+                            탈퇴 확인
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <!-- 관리자 전용: 회원 목록 조회 섹션 -->

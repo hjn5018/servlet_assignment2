@@ -309,3 +309,94 @@ header.navbar {
     justify-content: center;
     gap: 1rem;
 }
+
+/* ===== 모달 (회원탈퇴 확인) ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.modal-open {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.modal-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem 2.25rem;
+    max-width: 420px;
+    width: calc(100% - 2rem);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+    animation: slideUp 0.25s ease;
+    border-top: 4px solid var(--danger);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #991b1b;
+    margin-bottom: 0.5rem;
+}
+
+.modal-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.btn-danger-solid {
+    background-color: var(--danger);
+    color: #ffffff;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-danger-solid:hover {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+}

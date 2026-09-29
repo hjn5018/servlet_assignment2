@@ -118,6 +118,26 @@ public class UserDAO {
         }
     }
 
+    public boolean deleteUser(String id) {
+        String sql = "DELETE FROM users WHERE id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DBUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            DBUtil.close(conn, pstmt);
+        }
+    }
+
     public boolean insertUser(User user) {
         String sql = "INSERT INTO users (id, password, name, role) VALUES (?, ?, ?, ?)";
         Connection conn = null;
