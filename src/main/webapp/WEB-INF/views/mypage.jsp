@@ -245,13 +245,8 @@
                                                                                                 <td><code><%= u.getPassword().length() > 2 ? u.getPassword().substring(0, 2) + "****" : "****" %></code>
                                                                                                 </td>
                                                                                                 <td>
-                                                                                                    <span
-                                                                                                        class="badge <%= u.isAdmin() ? "
-                                                                                                        badge-admin"
-                                                                                                        : "badge-user"
-                                                                                                        %>">
-                                                                                                        <%= u.getRole()
-                                                                                                            %>
+                                                                                                    <span class="badge <%= u.isAdmin() ? "badge-admin" : "badge-user" %>">
+                                                                                                        <%= u.getRole() %>
                                                                                                     </span>
                                                                                                 </td>
                                                                                             </tr>
